@@ -45,7 +45,7 @@
                             <input type="number" class="form-control @error('number') is-invalid @enderror"
                                    id="number" name="number"
                                    value="{{ old('number', $flat->number ?? '') }}"
-                                   required min="1" max="999"> <!-- ← добавил max="999" -->
+                                   required min="1" max="999">
                             @error('number')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -56,7 +56,7 @@
                             <input type="number" class="form-control @error('residents') is-invalid @enderror"
                                    id="residents" name="residents"
                                    value="{{ old('residents', $flat->residents ?? '') }}"
-                                   required min="1" max="10"> <!-- ← добавил max="10" -->
+                                   required min="1" max="10">
                             @error('residents')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -67,7 +67,7 @@
                             <input type="number" step="0.1" class="form-control @error('area') is-invalid @enderror"
                                    id="area" name="area"
                                    value="{{ old('area', $flat->area ?? '') }}"
-                                   required min="20" max="500"> <!-- ← добавил max="500" -->
+                                   required min="20" max="500">
                             @error('area')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

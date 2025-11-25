@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Gate;
 
 use App\Models\Flat;
 use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation\Rule; // ← ДОБАВИТЬ ЭТОТ ИМПОРТ
+use Illuminate\Validation\Rule;
 
 class FlatViewController extends Controller
 {
@@ -58,8 +59,13 @@ class FlatViewController extends Controller
             ->with('success', 'Квартира успешно создана!');
     }
 
-    public function edit(string $id): View
+    public function edit(string $id)
     {
+        if (!Gate::allows('edit-flat')) {
+            return redirect('/error')->with('message',
+                'У вас нет прав для редактирования информации о квартирах');
+        }
+
         $flat = Flat::findOrFail($id);
         $houses = House::all();
         return view('flats.edit', compact('flat', 'houses'));
